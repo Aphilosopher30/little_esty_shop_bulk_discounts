@@ -4,9 +4,11 @@ describe 'new discount page' do
   it 'creates new discount'  do
     merchant1 = Merchant.create!(name: "Abe")
 
-    visit "/admin/merchants/#{merchant1.id}/discounts/new"
+    visit "/merchant/#{merchant1.id}/discounts/new"
 
-    fill_in "quantity threshold", with: 10
+    # save_and_open_page
+
+    fill_in "threshold", with: 10
     fill_in "percentage", with: 0.50
 
     click_button "Submit"
