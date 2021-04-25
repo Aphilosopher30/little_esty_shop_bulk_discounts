@@ -10,29 +10,25 @@ describe 'discount page' do
     discount_1a = merchant_a.discounts.create!(percentage: 0.10, threshold: 3)
     discount_2a = merchant_a.discounts.create!(percentage: 0.25, threshold: 5)
     discount_3a = merchant_a.discounts.create!(percentage: 0.50, threshold: 10)
-    discount_1b = merchant_b.discounts.create!(percentage: 0.23, threshold: 7)
+    discount_1b = merchant_b.discounts.create!(percentage: 0.23, threshold: 743)
 
 
     visit "merchant/#{merchant_a.id}/discounts"
 
 
     within("#merchant-#{discount_1a.id}") do
-      expect(page).to have_content(discount_1a.id)
       expect(page).to have_content(discount_1a.percentage)
       expect(page).to have_content(discount_1a.threshold)
     end
     within("#merchant-#{discount_2a.id}") do
-      expect(page).to have_content(discount_2a.id)
       expect(page).to have_content(discount_2a.percentage)
       expect(page).to have_content(discount_2a.threshold)
     end
     within("#merchant-#{discount_3a.id}") do
-      expect(page).to have_content(discount_3a.id)
       expect(page).to have_content(discount_3a.percentage)
       expect(page).to have_content(discount_3a.threshold)
     end
 
-    expect(page).to have_no_content(discount_1b.id)
     expect(page).to have_no_content(discount_1b.percentage)
     expect(page).to have_no_content(discount_1b.threshold)
   end
@@ -78,7 +74,7 @@ describe 'discount page' do
       end
 
       visit "/merchant/#{merchant_a.id}/discounts"
-  
+
       within("#merchant-#{discount_2a.id}") do
         click_link "#{discount_2a.id}"
         expect(current_path).to eq("/merchant/#{merchant_a.id}/discounts/#{discount_2a.id}")
@@ -90,7 +86,6 @@ describe 'discount page' do
         click_link "#{discount_3a.id}"
         expect(current_path).to eq("/merchant/#{merchant_a.id}/discounts/#{discount_3a.id}")
       end
-
     end
   end
 
@@ -113,7 +108,43 @@ describe 'discount page' do
       click_link "new discount"
       expect(current_path).to eq("/merchant/#{merchant_a.id}/discounts/new")
     end
+  end
 
+  it 'shows all bulk discount information' do
 
+    merchant_a = Merchant.create!(name: 'Merchant 1')
+
+    discount_1a = merchant_a.discounts.create!(percentage: 0.10, threshold: 3)
+    discount_2a = merchant_a.discounts.create!(percentage: 0.25, threshold: 500)
+    discount_3a = merchant_a.discounts.create!(percentage: 0.50, threshold: 10)
+
+    visit "merchant/#{merchant_a.id}/discounts"
+
+    expect(page).to have_content(discount_1a.id)
+    expect(page).to have_content(discount_1a.percentage)
+    expect(page).to have_content(discount_1a.threshold)
+
+    expect(page).to have_content(discount_2a.id)
+    expect(page).to have_content(discount_2a.percentage)
+    expect(page).to have_content(discount_2a.threshold)
+
+    expect(page).to have_content(discount_3a.id)
+    expect(page).to have_content(discount_3a.percentage)
+    expect(page).to have_content(discount_3a.threshold)
+
+    click_link "delete #{discount_2a.id}"
+    expect(current_path).to eq("/merchant/#{merchant_a.id}/discounts")
+
+    expect(page).to have_content(discount_1a.id)
+    expect(page).to have_content(discount_1a.percentage)
+    expect(page).to have_content(discount_1a.threshold)
+
+    expect(page).to have_no_content(discount_2a.id)
+    expect(page).to have_no_content(discount_2a.percentage)
+    expect(page).to have_no_content(discount_2a.threshold)
+
+    expect(page).to have_content(discount_3a.id)
+    expect(page).to have_content(discount_3a.percentage)
+    expect(page).to have_content(discount_3a.threshold)
   end
 end
