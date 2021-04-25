@@ -6,8 +6,6 @@ describe 'new discount page' do
 
     visit "/merchant/#{merchant1.id}/discounts/new"
 
-    # save_and_open_page
-
     fill_in "threshold", with: 10
     fill_in "percentage", with: 0.50
 
