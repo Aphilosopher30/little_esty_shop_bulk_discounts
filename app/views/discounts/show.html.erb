@@ -3,3 +3,5 @@
 <%= @discount.id %> </br>
 <%= @discount.threshold %> </br>
 <%= @discount.percentage %> </br>
+
+<%= link_to 'Edit', "/merchant/#{@merchant.id}/discounts/#{@discount.id}/edit" %>

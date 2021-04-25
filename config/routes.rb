@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/merchant/:merchant_id/discounts/:discount_id', to: 'discounts#show'
   delete "/merchant/:merchant_id/discounts/:discount_id", to: 'discounts#destroy'
 
+  get "/merchant/:merchant_id/discounts/:discount_id/edit", to: "discounts#edit"
+  patch "/merchant/:merchant_id/discounts/:discount_id", to: "discounts#update"
+
   resources :merchant, only: [:show] do
     resources :dashboard, only: [:index]
     resources :items, except: [:destroy]

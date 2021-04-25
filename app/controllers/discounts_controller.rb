@@ -23,7 +23,30 @@ class DiscountsController < ApplicationController
     # end
   end
 
+  def edit
+    @merchant = Merchant.find(params[:merchant_id])
+    @discount = Discount.find(params[:discount_id])
+  end
+
+  def update
+    @merchant = Merchant.find(params[:merchant_id])
+    @discount = Discount.find(params[:discount_id])
+
+    @discount.update({threshold: params[:threshold], percentage: params[:percentage]})
+
+    redirect_to "/merchant/#{@merchant.id}/discounts/#{@discount.id}"
+
+    # pet = Pet.find(params[:id])
+    # if pet.update(pet_params)
+    #   redirect_to "/pets/#{pet.id}"
+    # else
+    #   redirect_to "/pets/#{pet.id}/edit"
+    #   flash[:alert] = "Error: #{error_message(pet.errors)}"
+    # end
+  end
+
   def show
+    @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:discount_id])
   end
 
