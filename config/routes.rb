@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get '/merchant/:merchant_id/discounts/new', to: 'discounts#new'
   get '/merchant/:merchant_id/discounts', to: 'discounts#index'
+  post "/merchant/:merchant_id/discounts", to: 'discounts#create'
+
+  get '/merchant/:merchant_id/discounts/:discount_id', to: 'discounts#show'
 
 
   resources :merchant, only: [:show] do
