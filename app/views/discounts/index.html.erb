@@ -11,3 +11,10 @@
 <% end %>
 
 <%= link_to "new discount", "/merchant/#{@merchant.id}/discounts/new" %>
+
+
+Upcoming Holidays
+
+<% @upcoming_holidays.each do |holiday| %>
+  <%= holiday %> </br>
+<% end  %>

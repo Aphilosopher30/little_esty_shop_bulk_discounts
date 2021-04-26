@@ -10,6 +10,9 @@ class Item < ApplicationRecord
 
   enum status: [:disabled, :enabled]
 
+
+  
+
   def best_day
     invoices
     .joins(:invoice_items)

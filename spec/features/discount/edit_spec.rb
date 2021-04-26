@@ -17,7 +17,7 @@ RSpec.describe 'edit discount page' do
 
   end
 
-  it "give updates the data" do
+  it " updates the data" do
     merchant_a = Merchant.create!(name: 'Merchant 1')
     discount_1a = merchant_a.discounts.create!(percentage: 0.10, threshold: 3)
 
