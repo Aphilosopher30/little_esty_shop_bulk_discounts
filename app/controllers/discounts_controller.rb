@@ -1,8 +1,7 @@
-
 class DiscountsController < ApplicationController
   def index
     @merchant = Merchant.find(params[:merchant_id])
-    @upcoming_holidays = [] #HolidayAPI.upcoming
+    @upcoming_holidays = HolidayAPI.upcoming
   end
 
   def new

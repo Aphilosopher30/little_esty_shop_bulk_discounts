@@ -1,11 +1,18 @@
-require 'faraday'
-require 'pry'
-require 'json'
-require "date"
+  # require 'faraday'
+  # require 'pry'
+  # require 'json'
+  # require "date"
 
 class HolidayAPI
 
-  def get_holidays(country = "US", year = Time.now.year)
+  # def initialize
+  #   @holidays = get_holidays
+  # end
+
+  # HolidayAPI.new.upcoming
+
+
+  def self.get_holidays(country = "US", year = Time.now.year)
     holiday_1 = Faraday.get "https://date.nager.at/api/v2/PublicHolidays/#{year}/#{country}"
     holiday_2 = Faraday.get "https://date.nager.at/api/v2/PublicHolidays/#{year+1}/#{country}"
     thing_1 = JSON.parse(holiday_1.body.gsub('=>', ':'))
@@ -15,7 +22,6 @@ class HolidayAPI
 
   def self.upcoming(number = 3)
     holidays = get_holidays
-
     today = Time.now.to_date
 
     upcomeing_holidays = holidays.select do |holiday|
@@ -28,11 +34,10 @@ class HolidayAPI
 
     presentable = coming_soon.map {|info| name_and_date(info)}
 
-
     return presentable
   end
 
-  def name_and_date(data_hash)
+  def self.name_and_date(data_hash)
     "#{data_hash["name"]}: #{data_hash["date"]}"
   end
 
