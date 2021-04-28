@@ -16,11 +16,11 @@ class DiscountsController < ApplicationController
 
     redirect_to "/merchant/#{@merchant.id}/discounts"
 
-    # if item.save
-    #   redirect_to "/merchants/#{@merchant.id}/items"
+    # if new_discount.save
+    #  redirect_to "/merchant/#{@merchant.id}/discounts"
     # else
-    #   flash[:alert] = "ERROR: Item not created."
-    #   redirect_to "/merchants/#{@merchant.id}/items/new"
+    ##   flash[:alert] = "ERROR: Item not created."
+    #   redirect_to "/merchant/#{@merchant.id}/discounts/new"
     # end
   end
 
@@ -36,6 +36,17 @@ class DiscountsController < ApplicationController
     @discount.update({threshold: params[:threshold], percentage: params[:percentage]})
 
     redirect_to "/merchant/#{@merchant.id}/discounts/#{@discount.id}"
+
+
+
+  # if @discount.update({threshold: params[:threshold], percentage: params[:percentage]})
+  #   redirect_to "/merchant/#{@merchant.id}/discounts/#{@discount.id}"
+  # else
+  ##   flash[:alert] = "Error: #{error_message(pet.errors)}"
+  #   redirect_to "/merchant/#{@merchant.id}/discounts/#{@discount.id}/edit"
+  ##   flash[:alert] = "Error: #{error_message(pet.errors)}"
+  # end
+
 
     # pet = Pet.find(params[:id])
     # if pet.update(pet_params)
