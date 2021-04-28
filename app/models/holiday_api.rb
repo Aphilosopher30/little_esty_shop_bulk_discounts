@@ -1,13 +1,6 @@
 
 class HolidayAPI
 
-  # def initialize
-  #   @holidays = get_holidays
-  # end
-
-  # HolidayAPI.new.upcoming
-
-
   def self.get_holidays(country = "US", year = Time.now.year)
     holiday_1 = Faraday.get "https://date.nager.at/api/v2/PublicHolidays/#{year}/#{country}"
     holiday_2 = Faraday.get "https://date.nager.at/api/v2/PublicHolidays/#{year+1}/#{country}"

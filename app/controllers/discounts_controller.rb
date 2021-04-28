@@ -29,7 +29,6 @@ class DiscountsController < ApplicationController
     @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:discount_id])
 
-
     if @discount.update({threshold: params[:threshold], percentage: params[:percentage]})
       redirect_to "/merchant/#{@merchant.id}/discounts/#{@discount.id}"
     else
