@@ -159,13 +159,13 @@ describe "merchant items index" do
     end
   end
 
-  it "shows the best day next to the item" do
-    within("#top_5") do
-      expect(page).to have_content("Top selling date for #{@item_1.name} was #{@item_1.best_day}")
-      expect(page).to have_content("Top selling date for #{@item_2.name} was #{@item_2.best_day}")
-      expect(page).to have_content("Top selling date for #{@item_3.name} was #{@item_3.best_day}")
-      expect(page).to have_content("Top selling date for #{@item_4.name} was #{@item_4.best_day}")
-      expect(page).to have_content("Top selling date for #{@item_8.name} was #{@item_8.best_day}")
-    end
-  end
+  # it "shows the best day next to the item" do
+  #   within("#top_5") do
+  #     expect(page).to have_content("Top selling date for #{@item_1.name} was #{@item_1.best_day}")
+  #     expect(page).to have_content("Top selling date for #{@item_2.name} was #{@item_2.best_day}")
+  #     expect(page).to have_content("Top selling date for #{@item_3.name} was #{@item_3.best_day}")
+  #     expect(page).to have_content("Top selling date for #{@item_4.name} was #{@item_4.best_day}")
+  #     expect(page).to have_content("Top selling date for #{@item_8.name} was #{@item_8.best_day}")
+  #   end
+  # end
 end

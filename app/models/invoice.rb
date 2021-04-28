@@ -42,8 +42,6 @@ class Invoice < ApplicationRecord
     return total
   end
 
-
-
   def total_revenue_merchant(merchant)
     no_discount = merchant.discounts.create!(percentage: 0, threshold: 0)
 
@@ -62,4 +60,8 @@ class Invoice < ApplicationRecord
 
     return total
   end
+
+  def 
+  end
+
 end

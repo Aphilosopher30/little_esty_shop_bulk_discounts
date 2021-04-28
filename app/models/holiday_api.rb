@@ -1,7 +1,3 @@
-  # require 'faraday'
-  # require 'pry'
-  # require 'json'
-  # require "date"
 
 class HolidayAPI
 

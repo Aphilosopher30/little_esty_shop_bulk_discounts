@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     .select('invoices.*, sum(invoice_items.unit_price * invoice_items.quantity) as money')
     .group(:id)
     .order("money desc", "created_at desc")
-    # .first
+    .first
     # .created_at
     # .to_date
   end
