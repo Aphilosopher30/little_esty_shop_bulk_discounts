@@ -18,17 +18,17 @@ class InvoiceItem < ApplicationRecord
     Invoice.order(created_at: :asc).find(invoice_ids)
   end
 
-
   def applicable_discount
     discount = InvoiceItem.joins(:discounts)
       .where("invoice_items.id = ?", self.id)
       .where("discounts.threshold <= invoice_items.quantity")
       .select("discounts.id")
-      .order(percentage: :desc).first
+      .order(percentage: :desc)
 
-    discount.id 
+    if discount.first == nil
+      return nil
+    else
+      return discount.first.id
+    end
   end
-
-
-
 end

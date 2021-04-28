@@ -96,4 +96,33 @@ RSpec.describe 'invoices show' do
      end
   end
 
+  it "has links to applicable discounts" do
+    @ii_111 = InvoiceItem.create!(invoice_id: @invoice_1.id, item_id: @item_8.id, quantity: 2, unit_price: 6, status: 1)
+
+    discount_1 = @merchant1.discounts.create!(threshold: 5, percentage: 0.20)
+    discount_2 = @merchant1.discounts.create!(threshold: 10, percentage: 0.50)
+    discount_3 = @merchant1.discounts.create!(threshold: 100, percentage:0.90)
+
+    visit merchant_invoice_path(@merchant1, @invoice_1)
+
+    within("#the-status-#{@ii_1.id}") do
+      expect(page).to have_link(discount_1.id)
+    end
+
+    within("#the-status-#{@ii_11.id}") do
+      expect(page).to have_link(discount_2.id)
+    end
+
+    within("#the-status-#{@ii_111.id}") do
+      expect(page).to have_no_link(discount_1.id)
+      expect(page).to have_no_link(discount_2.id)
+      expect(page).to have_no_link(discount_3.id)
+    end
+
+    within("#the-status-#{@ii_11.id}") do
+      click_link "#{discount_2.id}"
+      expect(current_path).to eq("/merchant/#{@merchant1.id}/discounts/#{discount_2.id}")
+    end
+  end
+
 end
