@@ -61,7 +61,5 @@ class Invoice < ApplicationRecord
     return total
   end
 
-  def 
-  end
 
 end
