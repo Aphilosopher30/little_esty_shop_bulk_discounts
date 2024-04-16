@@ -19,9 +19,8 @@ class InvoiceItem < ApplicationRecord
   end
 
   def applicable_discount
-    discount = InvoiceItem.joins(:discounts)
-      .where("invoice_items.id = ?", self.id)
-      .where("discounts.threshold <= invoice_items.quantity")
+    discount = self.discounts
+      .where("discounts.threshold <= #{self.quantity}")
       .select("discounts.id")
       .order(percentage: :desc)
 

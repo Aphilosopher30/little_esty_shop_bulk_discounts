@@ -31,7 +31,7 @@ RSpec.describe InvoiceItem, type: :model do
 
       expect(@ii_1.applicable_discount).to eq(discount_2.id)
     end
-    it "get applicable discount_id" do
+    it "can handle when no discounts are available" do
       @merchant1 = Merchant.create!(name: 'Hair Care')
       @merchant2 = Merchant.create!(name: 'Hair Care')
 
