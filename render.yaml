@@ -19,7 +19,8 @@ services:
           property: connectionString
       # - key: 3a84d0903f67f454974751cd9a02dd86
       # - key: 82707bb16745d13476d213e65e97585f
-      - key: 5669b200802189f4854d81ecd390a5da
+      # - key: 5669b200802189f4854d81ecd390a5da
+      - key: 0cd336d6c53bc1ae1f3039eba45712f6
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
